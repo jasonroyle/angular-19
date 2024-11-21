@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
+
+import { THEME, Theme, ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [MatButton, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'a19';
+  private _theme = inject(THEME);
+  private _themeService = inject(ThemeService);
+
+  toggleTheme(): void {
+    this._theme = this._theme === Theme.Codeweavers ? Theme.Volvo : Theme.Codeweavers;
+    this._themeService.setTheme(this._theme);
+  }
 }

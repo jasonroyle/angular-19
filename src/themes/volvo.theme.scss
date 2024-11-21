@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../app/styles/cw';
+@use '../app/styles/volvo-theme';
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: volvo-theme.$primary-palette,
+      tertiary: volvo-theme.$tertiary-palette,
+    ),
+    typography: Roboto,
+  ));
+
+  @include cw.theme((
+    border-radius: 50px
+  ));
+
+  // Use high contrast light theme colors when users prefer contrast
+  @media (prefers-contrast: more) {
+    @include volvo-theme.high-contrast-overrides(light);
+  }
+
+  // Apply dark theme when users prefer a dark color scheme
+  @media (prefers-color-scheme: dark) {
+    @include mat.theme((
+      color: (
+        primary: volvo-theme.$primary-palette,
+        tertiary: volvo-theme.$tertiary-palette,
+        theme-type: dark,
+      ),
+    ));
+
+    // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
+    @media (prefers-contrast: more) {
+      @include volvo-theme.high-contrast-overrides(dark);
+    }
+  }
+}
