@@ -1,3 +1,28 @@
 button {
   border-radius: var(--cw-border-radius);
 }
+
+.colors {
+  > * {
+    height: 100px;
+    width: 100px;
+  }
+  .primary {
+    background-color: var(--mat-sys-primary);
+  }
+  .brand-primary {
+    background-color: var(--brand-primary);
+  }
+  .secondary {
+    background-color: var(--mat-sys-secondary);
+  }
+  .brand-secondary {
+    background-color: var(--brand-secondary);
+  }
+  .tertiary {
+    background-color: var(--mat-sys-tertiary);
+  }
+  .brand-tertiary {
+    background-color: var(--brand-tertiary);
+  }
+}

@@ -1,14 +1,20 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use '../app/styles/cw';
-@use '../app/styles/cw-theme';
+@use '../app/styles/cw-colors';
 
 html {
+  --brand-primary: #196ae3;
+  --brand-secondary: #414a54;
+  --brand-tertiary: #e9edf1;
+
+  @include cw.declare-palette(cw.palette(#196ae3));
+
   @include mat.theme((
     color: (
       theme-type: light,
-      primary: cw-theme.$primary-palette,
-      tertiary: cw-theme.$tertiary-palette,
+      primary: cw-colors.$primary-palette,
+      tertiary: cw-colors.$tertiary-palette,
     ),
     typography: Roboto,
   ));
@@ -19,22 +25,26 @@ html {
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {
-    @include cw-theme.high-contrast-overrides(light);
+    @include cw-colors.high-contrast-overrides(light);
   }
 
   // Apply dark theme when users prefer a dark color scheme
   @media (prefers-color-scheme: dark) {
     @include mat.theme((
       color: (
-        primary: cw-theme.$primary-palette,
-        tertiary: cw-theme.$tertiary-palette,
+        primary: cw-colors.$primary-palette,
+        tertiary: cw-colors.$tertiary-palette,
         theme-type: dark,
       ),
     ));
 
     // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
     @media (prefers-contrast: more) {
-      @include cw-theme.high-contrast-overrides(dark);
+      @include cw-colors.high-contrast-overrides(dark);
+    }
+
+    body {
+      background-color: #000;
     }
   }
 }

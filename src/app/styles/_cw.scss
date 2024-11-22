@@ -1,5 +1,50 @@
+@use 'sass:color';
+@use 'sass:math';
 @use 'sass:map';
 
 @mixin theme($theme) {
   --cw-border-radius: #{map.get($theme, border-radius)};
+}
+
+$tones: (0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100);
+
+@function palette($color, $variant: light, $tones: $tones) {
+  $base-tone: 40;
+  @if $variant == dark {
+    $base-tone: 80;
+  }
+  $palette: ();
+  @each $tone in $tones {
+    $multiplier: math.abs($base-tone - $tone);
+    $tone-color: $color;
+    @if $tone < $base-tone {
+      $tone-color: color.scale($color, $lightness: -(math.div(100%, $base-tone)) * $multiplier);
+    } @else if $tone > $base-tone {
+      $tone-color: color.scale($color, $lightness: math.div(100%, (100 - $base-tone)) * $multiplier);
+    }
+    @debug $tone, $tone-color;
+    $palette: map.set($palette, $tone, $tone-color);
+  }
+  @return $palette;
+}
+
+@function palette-variants($color, $tones) {
+  @return (
+    dark: palette($color, dark, map.get($tones, $color)),
+    light: palette($color, light, map.get($tones, $color))
+  );
+}
+
+@function palettes($colors, $tones: ()) {
+  $palettes: ();
+  @each $color in $colors {
+    $palettes: map.set($palettes, $color, palette-variants($color));
+  }
+  @return $palettes;
+}
+
+@mixin declare-palette($palette) {
+  @each $tone, $color in $palette {
+    --cw-tone-#{$tone}: #{$color};
+  }
 }

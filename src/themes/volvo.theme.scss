@@ -1,14 +1,18 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use '../app/styles/cw';
-@use '../app/styles/volvo-theme';
+@use '../app/styles/volvo-colors';
 
 html {
+  --brand-primary: #284e80;
+  --brand-secondary: #284e80;
+  --brand-tertiary: #2875c3;
+
   @include mat.theme((
     color: (
       theme-type: light,
-      primary: volvo-theme.$primary-palette,
-      tertiary: volvo-theme.$tertiary-palette,
+      primary: volvo-colors.$primary-palette,
+      tertiary: volvo-colors.$tertiary-palette,
     ),
     typography: Roboto,
   ));
@@ -19,22 +23,26 @@ html {
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {
-    @include volvo-theme.high-contrast-overrides(light);
+    @include volvo-colors.high-contrast-overrides(light);
   }
 
   // Apply dark theme when users prefer a dark color scheme
   @media (prefers-color-scheme: dark) {
     @include mat.theme((
       color: (
-        primary: volvo-theme.$primary-palette,
-        tertiary: volvo-theme.$tertiary-palette,
+        primary: volvo-colors.$primary-palette,
+        tertiary: volvo-colors.$tertiary-palette,
         theme-type: dark,
       ),
     ));
 
     // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
     @media (prefers-contrast: more) {
-      @include volvo-theme.high-contrast-overrides(dark);
+      @include volvo-colors.high-contrast-overrides(dark);
+    }
+
+    body {
+      background-color: #000;
     }
   }
 }
