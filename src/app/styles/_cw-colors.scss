@@ -3,41 +3,138 @@
 
 @use 'sass:map';
 @use '@angular/material' as mat;
-@use 'cw';
 
-$_colors: (
-  primary: #196ae3,
-  secondary: #414a54,
-  tertiary: #e9edf1,
-  neutral: #5c5e67,
-  neutral-variant: #5a5e6c,
-  error: #ba1a1a
+// Note: Color palettes are generated from primary: #196ae3, secondary: #414a54, tertiary: #e9edf1
+$_palettes: (
+  primary: (
+    0: #000000,
+    10: #001944,
+    20: #002d6d,
+    25: #003882,
+    30: #004299,
+    35: #004db0,
+    40: #0059c8,
+    50: #2772eb,
+    60: #538dff,
+    70: #84aaff,
+    80: #afc6ff,
+    90: #d9e2ff,
+    95: #edf0ff,
+    98: #faf8ff,
+    99: #fefbff,
+    100: #ffffff,
+  ),
+  secondary: (
+    0: #000000,
+    10: #131c25,
+    20: #28313b,
+    25: #333c46,
+    30: #3f4852,
+    35: #4a535e,
+    40: #565f6a,
+    50: #6f7883,
+    60: #88929d,
+    70: #a3acb8,
+    80: #bec7d3,
+    90: #dae3f0,
+    95: #e8f2fe,
+    98: #f7f9ff,
+    99: #fcfcff,
+    100: #ffffff,
+  ),
+  tertiary: (
+    0: #000000,
+    10: #171c1f,
+    20: #2c3134,
+    25: #373c3f,
+    30: #43474b,
+    35: #4e5356,
+    40: #5a5f62,
+    50: #73787b,
+    60: #8d9195,
+    70: #a7acb0,
+    80: #c3c7cb,
+    90: #dfe3e7,
+    95: #edf1f5,
+    98: #f6fafe,
+    99: #fbfcff,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #191b23,
+    20: #2e3038,
+    25: #393b43,
+    30: #44464f,
+    35: #50525b,
+    40: #5c5e67,
+    50: #757780,
+    60: #8e909a,
+    70: #a9abb5,
+    80: #c5c6d0,
+    90: #e1e2ec,
+    95: #eff0fb,
+    98: #faf8ff,
+    99: #fefbff,
+    100: #ffffff,
+    4: #0b0e15,
+    6: #11131a,
+    12: #1d1f27,
+    17: #272a32,
+    22: #32353d,
+    24: #363941,
+    87: #d8d9e4,
+    92: #e7e7f2,
+    94: #ecedf8,
+    96: #f2f3fd,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #171b27,
+    20: #2b303d,
+    25: #373b48,
+    30: #424754,
+    35: #4e5260,
+    40: #5a5e6c,
+    50: #727785,
+    60: #8c90a0,
+    70: #a7abbb,
+    80: #c2c6d6,
+    90: #dee2f3,
+    95: #edf0ff,
+    98: #faf8ff,
+    99: #fefbff,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  ),
 );
 
-$_palettes: cw.palettes(
-  $_colors,
-  (
-    neutral: map.merge(cw.$tones, (4, 6, 12, 17, 22, 24, 87, 92, 94, 96))
-  )
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes,  neutral-variant),
+  error: map.get($_palettes, error),
 );
 
-$_rest-dark: (
-  secondary: map.get(map.get($_palettes, secondary), dark),
-  neutral: map.get(map.get($_palettes, neutral), dark),
-  neutral-variant: map.get(map.get($_palettes,  neutral-variant), dark),
-  error: map.get(map.get($_palettes, error), dark),
-);
-$_rest-light: (
-  secondary: map.get(map.get($_palettes, secondary), light),
-  neutral: map.get(map.get($_palettes, neutral), light),
-  neutral-variant: map.get(map.get($_palettes,  neutral-variant), light),
-  error: map.get(map.get($_palettes, error), light),
-);
-
-$primary-dark-palette: map.merge(map.get(map.get($_palettes, primary), dark), $_rest-dark);
-$tertiary-dark-palette: map.merge(map.get(map.get($_palettes, tertiary), dark), $_rest-dark);
-$primary-light-palette: map.merge(map.get(map.get($_palettes, primary), light), $_rest-light);
-$tertiary-light-palette: map.merge(map.get(map.get($_palettes, tertiary), light), $_rest-light);
+$primary-palette: map.merge(map.get($_palettes, primary), $_rest);
+$tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
 @function _high-contrast-value($light, $dark, $theme-type) {
   @if ($theme-type == light) {
@@ -104,4 +201,4 @@ $tertiary-light-palette: map.merge(map.get(map.get($_palettes, tertiary), light)
     surface-variant: _high-contrast-value(#dee2f3, #424754, $theme-type),
     on-surface-variant: _high-contrast-value(#000000, #ffffff, $theme-type),
   ))
-}
+ }
