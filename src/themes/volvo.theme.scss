@@ -17,9 +17,9 @@ html {
     typography: Roboto,
   ));
 
-  @include cw.theme((
-    border-radius: 50px
-  ));
+  @include cw.theme();
+
+  @include cw.theme-overrides();
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {
