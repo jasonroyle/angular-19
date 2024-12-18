@@ -1,24 +1,13 @@
+@use '@angular/material' as mat;
+
+.brand-override {
+  @include mat.theme-overrides((
+    primary: var(--cw-brand-primary),
+    secondary: var(--cw-brand-secondary),
+    tertiary: var(--cw-brand-tertiary)
+  ));
+}
+
 .colors {
-  > * {
-    height: 100px;
-    width: 100px;
-  }
-  .primary {
-    background-color: var(--mat-sys-primary);
-  }
-  .brand-primary {
-    background-color: var(--cw-brand-primary);
-  }
-  .secondary {
-    background-color: var(--mat-sys-secondary);
-  }
-  .brand-secondary {
-    background-color: var(--cw-brand-secondary);
-  }
-  .tertiary {
-    background-color: var(--mat-sys-tertiary);
-  }
-  .brand-tertiary {
-    background-color: var(--cw-brand-tertiary);
-  }
+  display: flex;
 }

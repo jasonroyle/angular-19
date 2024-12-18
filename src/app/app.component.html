@@ -2,14 +2,19 @@
 <button mat-stroked-button>Secondary</button>
 <button mat-button>Link</button>
 
-
 <div class="colors">
-  <div class="primary"></div>
-  <div class="brand-primary"></div>
-  <div class="secondary"></div>
-  <div class="brand-secondary"></div>
-  <div class="tertiary"></div>
-  <div class="brand-tertiary"></div>
+  <div>
+    <h3>Material</h3>
+    <app-color-swatch palette="primary"></app-color-swatch>
+    <app-color-swatch palette="secondary"></app-color-swatch>
+    <app-color-swatch palette="tertiary"></app-color-swatch>
+  </div>
+  <div class="brand-override">
+    <h3>Brand</h3>
+    <app-color-swatch palette="primary"></app-color-swatch>
+    <app-color-swatch palette="secondary"></app-color-swatch>
+    <app-color-swatch palette="tertiary"></app-color-swatch>
+  </div>
 </div>
 
 <router-outlet />
