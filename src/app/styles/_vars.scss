@@ -1,6 +1,17 @@
-@mixin vars {
-  --cw-container-shape: 10px;
-  --cw-drop-shadow-color: red;
-  --cw-drop-shadow-x: 10px;
-  --cw-drop-shadow-y: 20px;
+@use 'sass:map';
+
+$vars: (
+  brand-primary: red,
+  brand-secondary: red,
+  brand-tertiary: red,
+  container-shape: 10px
+);
+
+@mixin vars($overrides: ()) {
+  $vars: map.merge($vars, $overrides);
+  & {
+    @each $var, $val in $vars {
+      --cw-#{$var}: #{$val};
+    }
+  }
 }

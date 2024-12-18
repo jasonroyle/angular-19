@@ -4,22 +4,20 @@
 @use '../app/styles/cw-colors';
 
 html {
-  --brand-primary: #196ae3;
-  --brand-secondary: #414a54;
-  --brand-tertiary: #e9edf1;
-
-  @include cw.declare-palette(cw.palette(#196ae3));
-
   @include mat.theme((
     color: (
       theme-type: light,
       primary: cw-colors.$primary-palette,
-      tertiary: cw-colors.$tertiary-palette,
+      tertiary: cw-colors.$tertiary-palette
     ),
     typography: Roboto,
   ));
 
-  @include cw.theme();
+  @include cw.theme((
+    brand-primary: #196ae3,
+    brand-secondary: #414a54,
+    brand-tertiary: #e9edf1
+  ));
 
   @include cw.theme-overrides((
     filled-container-shape: 4px
@@ -40,13 +38,17 @@ html {
       ),
     ));
 
+    @include cw.theme-overrides((
+      filled-container-shape: 4px
+    ));
+
     // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
     @media (prefers-contrast: more) {
       @include cw-colors.high-contrast-overrides(dark);
     }
+  }
 
-    body {
-      background-color: #000;
-    }
+  body {
+    background-color: var(--mat-sys-surface);
   }
 }

@@ -6,7 +6,8 @@
     filled-container-shape: var(--cw-container-shape),
     outlined-container-shape: var(--cw-container-shape),
     protected-container-shape: var(--cw-container-shape),
-    text-container-shape: var(--cw-container-shape)
+    text-container-shape: var(--cw-container-shape),
+    filled-container-color: var(--cw-brand-primary)
   );
   @include mat.button-overrides(map.merge($default-overrides, $button-overrides));
 }

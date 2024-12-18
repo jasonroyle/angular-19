@@ -6,38 +6,51 @@
 @use 'cw';
 
 $_colors: (
-  primary: #196ae3,
-  secondary: #414a54,
-  tertiary: #e9edf1,
-  neutral: #5c5e67,
-  neutral-variant: #5a5e6c,
-  error: #ba1a1a
+  primary: (light: #196ae3, dark: red),
+  secondary: (light: #414a54, dark: green),
+  tertiary: (light: #e9edf1, dark: blue),
+  neutral: (light: #5c5e67, dark: #5c5e67),
+  neutral-variant: (light: #5a5e6c, dark: #5a5e6c),
+  error: (light: #ba1a1a, dark: #ba1a1a)
 );
 
-$_palettes: cw.palettes(
+$_palettes: cw.palette-variants(
   $_colors,
-  (
-    neutral: map.merge(cw.$tones, (4, 6, 12, 17, 22, 24, 87, 92, 94, 96))
+  //(
+  //  neutral: map.merge(cw.$tones, (4, 6, 12, 17, 22, 24, 87, 92, 94, 96))
+  //)
+);
+
+@mixin declare-palettes {
+  //@each $name, $palette in $_palettes {
+  //  cw.declare-palette('#{$name}-light', map.get($palette, light));
+  //  cw.declare-palette('#{$name}-dark', map.get($palette, light));
+  //}
+}
+
+$_rest: (
+  light: (
+    secondary: map.get($_palettes, secondary, light),
+    neutral: map.get($_palettes, neutral, light),
+    neutral-variant: map.get($_palettes,  neutral-variant, light),
+    error: map.get($_palettes, error, light)
+  ),
+  dark: (
+    secondary: map.get($_palettes, secondary, dark),
+    neutral: map.get($_palettes, neutral, dark),
+    neutral-variant: map.get($_palettes,  neutral-variant, dark),
+    error: map.get($_palettes, error, dark),
   )
 );
 
-$_rest-dark: (
-  secondary: map.get(map.get($_palettes, secondary), dark),
-  neutral: map.get(map.get($_palettes, neutral), dark),
-  neutral-variant: map.get(map.get($_palettes,  neutral-variant), dark),
-  error: map.get(map.get($_palettes, error), dark),
+$primary-palette: (
+  light: map.merge(map.get($_palettes, primary, light), map.get($_rest, light)),
+  dark: map.merge(map.get($_palettes, primary, dark), map.get($_rest, dark))
 );
-$_rest-light: (
-  secondary: map.get(map.get($_palettes, secondary), light),
-  neutral: map.get(map.get($_palettes, neutral), light),
-  neutral-variant: map.get(map.get($_palettes,  neutral-variant), light),
-  error: map.get(map.get($_palettes, error), light),
+$tertiary-palette: (
+  light: map.merge(map.get($_palettes, tertiary, light), map.get($_rest, light)),
+  dark: map.merge(map.get($_palettes, tertiary, dark), map.get($_rest, dark))
 );
-
-$primary-dark-palette: map.merge(map.get(map.get($_palettes, primary), dark), $_rest-dark);
-$tertiary-dark-palette: map.merge(map.get(map.get($_palettes, tertiary), dark), $_rest-dark);
-$primary-light-palette: map.merge(map.get(map.get($_palettes, primary), light), $_rest-light);
-$tertiary-light-palette: map.merge(map.get(map.get($_palettes, tertiary), light), $_rest-light);
 
 @function _high-contrast-value($light, $dark, $theme-type) {
   @if ($theme-type == light) {
