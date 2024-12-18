@@ -28,6 +28,6 @@ export class ThemeService {
   }
 
   setTheme(theme: Theme): void {
-    this._renderer.setAttribute(this._linkElement, 'href', `${theme}.theme.css`);
+    this._renderer.setAttribute(this._linkElement, 'href', `${theme}-theme.css`);
   }
 }

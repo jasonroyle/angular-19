@@ -1,7 +1,7 @@
-@use 'sass:map';
 @use '@angular/material' as mat;
-@use '../app/styles/cw';
-@use '../app/styles/cw-colors';
+
+@use '../../app/design-system' as ds;
+@use './cw-colors';
 
 html {
   @include mat.theme((
@@ -13,13 +13,13 @@ html {
     typography: Roboto,
   ));
 
-  @include cw.theme((
+  @include ds.theme((
     brand-primary: #196ae3,
     brand-secondary: #414a54,
     brand-tertiary: #e9edf1
   ));
 
-  @include cw.theme-overrides((
+  @include ds.theme-overrides((
     filled-container-shape: 4px
   ));
 
@@ -38,7 +38,7 @@ html {
       ),
     ));
 
-    @include cw.theme-overrides((
+    @include ds.theme-overrides((
       filled-container-shape: 4px
     ));
 

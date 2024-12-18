@@ -1,0 +1,18 @@
+@use 'sass:color';
+@use 'sass:math';
+@use 'sass:map';
+
+@use '../components' as cw;
+@use './vars';
+
+@mixin theme($var-overrides: ()) {
+  @include vars.vars($var-overrides);
+
+  button {
+    @include cw.button-theme();
+  }
+}
+
+@mixin theme-overrides($overrides: ()) {
+  @include cw.button-overrides($overrides);
+}

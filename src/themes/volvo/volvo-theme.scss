@@ -1,7 +1,7 @@
-@use 'sass:map';
 @use '@angular/material' as mat;
-@use '../app/styles/cw';
-@use '../app/styles/volvo-colors';
+
+@use '../../app/design-system' as ds;
+@use './volvo-colors';
 
 html {
   @include mat.theme((
@@ -13,13 +13,13 @@ html {
     typography: Roboto,
   ));
 
-  @include cw.theme((
+  @include ds.theme((
     brand-primary: #284e80,
     brand-secondary: #2875C3,
     brand-tertiary: #161618,
   ));
 
-  @include cw.theme-overrides();
+  @include ds.theme-overrides();
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {
