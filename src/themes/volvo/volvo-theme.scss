@@ -19,11 +19,15 @@
     brand-primary: #284e80,
     brand-secondary: #2875C3,
     brand-tertiary: #161618,
+    container-shape: 1em,
     label-text-transform: uppercase,
     outline-width: 3px
   ));
 
-  @include ds.theme-overrides((), true);
+  @include ds.theme-overrides((
+    //container-shape: 0, // This works!
+    filled-container-shape: 0
+  ), true);
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {

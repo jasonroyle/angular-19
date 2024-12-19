@@ -21,9 +21,7 @@
     brand-tertiary: #e9edf1
   ));
 
-  @include ds.theme-overrides((
-    filled-container-shape: 10px
-  ));
+  @include ds.theme-overrides();
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {
