@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:map';
 @use 'sass:meta';
 
@@ -18,7 +19,27 @@ $default-vars: (
   label-text-transform: null
 );
 
+@function get-contrast($color) {
+  @if color.channel($color, 'lightness', $space: hsl) < 50 {
+    @return white;
+  }
+  @return black;
+}
+
+@function set-contrast($map, $key, $contrast-key: null) {
+  @if meta.type-of($contrast-key) != 'string' {
+    $contrast-key: on-#{$key}
+  }
+  @if map.has-key($map, $key) and not map.has-key($map, $contrast-key) {
+    $map: map.set($map, $contrast-key, get-contrast(map.get($map, $key)));
+  }
+  @return $map;
+}
+
 @mixin vars($overrides: ()) {
+  $overrides: set-contrast($overrides, brand-primary);
+  $overrides: set-contrast($overrides, brand-secondary);
+  $overrides: set-contrast($overrides, brand-tertiary);
   $vars: map.merge($default-vars, $overrides);
   & {
     @each $var, $val in $vars {

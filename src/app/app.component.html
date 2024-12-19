@@ -1,8 +1,17 @@
-<button (click)="toggleTheme()" mat-flat-button>Primary</button>
-<button mat-stroked-button>Secondary</button>
-<button mat-button>Link</button>
+<h1 (click)="toggleTheme()">{{ theme }}</h1>
 
-<div class="colors">
+<section>
+  <div>
+    <button mat-flat-button>Flat (Primary, filled)</button>
+    <button mat-stroked-button>Stroked (Secondary, outlined)</button>
+    <button mat-button>Basic (Link, text)</button>
+  </div>
+  <div>
+    <button mat-raised-button>Raised (protected)</button>
+  </div>
+</section>
+
+<section>
   <div>
     <h3>Palette</h3>
     <app-color-swatch palette="primary"></app-color-swatch>
@@ -15,6 +24,6 @@
     <app-color-swatch palette="secondary"></app-color-swatch>
     <app-color-swatch palette="tertiary"></app-color-swatch>
   </div>
-</div>
+</section>
 
 <router-outlet />

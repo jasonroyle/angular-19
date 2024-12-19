@@ -15,6 +15,10 @@ export class AppComponent {
   private _theme = inject(THEME);
   private _themeService = inject(ThemeService);
 
+  get theme(): Theme {
+    return this._theme;
+  }
+
   toggleTheme(): void {
     this._theme = this._theme === Theme.Codeweavers ? Theme.Volvo : Theme.Codeweavers;
     this._themeService.setTheme(this._theme);

@@ -1,13 +1,32 @@
 @use '@angular/material' as mat;
 
+:host {
+  display: block;
+  padding: 2em;
+}
+
+h3 {
+  color: var(--mat-sys-on-surface);
+}
+
 .brand-override {
   @include mat.theme-overrides((
     primary: var(--cw-brand-primary),
+    on-primary: var(--cw-on-brand-primary),
     secondary: var(--cw-brand-secondary),
-    tertiary: var(--cw-brand-tertiary)
+    on-secondary: var(--cw-on-brand-secondary),
+    tertiary: var(--cw-brand-tertiary),
+    on-tertiary: var(--cw-on-brand-tertiary),
   ));
 }
 
-.colors {
+section {
   display: flex;
+  gap: 1em;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
 }

@@ -4,6 +4,8 @@
 @use './cw-colors';
 
 :root {
+  background-color: var(--mat-sys-surface);
+
   @include mat.theme((
     color: (
       theme-type: light,
@@ -43,6 +45,4 @@
       @include cw-colors.high-contrast-overrides(dark);
     }
   }
-
-  background-color: var(--mat-sys-surface);
 }

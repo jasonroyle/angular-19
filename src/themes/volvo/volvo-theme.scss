@@ -4,6 +4,8 @@
 @use './volvo-colors';
 
 :root {
+  background-color: var(--mat-sys-surface);
+
   @include mat.theme((
     color: (
       theme-type: light,
@@ -17,7 +19,8 @@
     brand-primary: #284e80,
     brand-secondary: #2875C3,
     brand-tertiary: #161618,
-    label-text-transform: uppercase
+    label-text-transform: uppercase,
+    outline-width: 3px
   ));
 
   @include ds.theme-overrides((), true);
@@ -37,11 +40,15 @@
       ),
     ));
 
+    @include ds.theme((
+      brand-primary: #2875C3,
+      brand-secondary: #284e80,
+      brand-tertiary: #161618
+    ));
+
     // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
     @media (prefers-contrast: more) {
       @include volvo-colors.high-contrast-overrides(dark);
     }
   }
-
-  background-color: var(--mat-sys-surface);
 }
