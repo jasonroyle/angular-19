@@ -1,17 +1,20 @@
 @use 'sass:map';
+@use 'sass:meta';
 
 $vars: (
-  brand-primary: red,
-  brand-secondary: red,
-  brand-tertiary: red,
-  container-shape: 10px
+  brand-primary: var(--mat-sys-primary),
+  brand-secondary: var(--mat-sys-secondary),
+  brand-tertiary: var(--mat-sys-tertiary),
+  container-shape: null
 );
 
 @mixin vars($overrides: ()) {
   $vars: map.merge($vars, $overrides);
   & {
     @each $var, $val in $vars {
-      --cw-#{$var}: #{$val};
+      @if meta.type-of($val) != 'null' {
+        --cw-#{$var}: #{$val};
+      }
     }
   }
 }

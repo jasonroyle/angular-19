@@ -3,7 +3,7 @@
 @use '../../app/design-system' as ds;
 @use './cw-colors';
 
-html {
+:root {
   @include mat.theme((
     color: (
       theme-type: light,
@@ -48,7 +48,5 @@ html {
     }
   }
 
-  body {
-    background-color: var(--mat-sys-surface);
-  }
+  background-color: var(--mat-sys-surface);
 }
