@@ -13,6 +13,8 @@
   }
 }
 
-@mixin theme-overrides($overrides: ()) {
-  @include cw.button-overrides($overrides);
+@mixin theme-overrides($overrides: (), $brand: false) {
+  button {
+    @include cw.button-overrides($overrides, $brand);
+  }
 }

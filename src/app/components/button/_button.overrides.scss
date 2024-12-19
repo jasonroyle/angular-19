@@ -1,13 +1,28 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@mixin button-overrides($button-overrides: ()) {
+@mixin button-overrides($overrides: (), $brand: false) {
+  $container-shape: var(--cw-button-container-shape, var(--cw-container-shape));
+  $brand-primary: var(--cw-button-brand-primary, var(--cw-brand-primary));
+  $label-text-transform: var(--cw-button-label-text-transform, var(--cw-label-text-transform));
+
   $default-overrides: (
-    filled-container-shape: var(--cw-container-shape),
-    outlined-container-shape: var(--cw-container-shape),
-    protected-container-shape: var(--cw-container-shape),
-    text-container-shape: var(--cw-container-shape),
-    filled-container-color: var(--cw-brand-primary)
+    filled-container-shape: $container-shape,
+    outlined-container-shape: $container-shape,
+    protected-container-shape: $container-shape,
+    text-container-shape: $container-shape,
+    filled-label-text-transform: $label-text-transform,
+    outlined-label-text-transform: $label-text-transform,
+    protected-label-text-transform: $label-text-transform,
+    text-label-text-transform: $label-text-transform
   );
-  @include mat.button-overrides(map.merge($default-overrides, $button-overrides));
+  $brand-overrides: (
+    filled-container-color: $brand-primary
+  );
+
+  @if $brand {
+    $overrides: map.merge($brand-overrides, $overrides);
+  }
+
+  @include mat.button-overrides(map.merge($default-overrides, $overrides));
 }

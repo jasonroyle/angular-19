@@ -1,15 +1,25 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-$vars: (
+$default-vars: (
+  /**
+   * Brand values are reliably the exact values provided by the brand (as long as they are provided)
+   * Material system primary/secondary/tertiary are be based on palette tones by default unless overridden and therefore are not reliably the exact brand values.
+   */
   brand-primary: var(--mat-sys-primary),
   brand-secondary: var(--mat-sys-secondary),
   brand-tertiary: var(--mat-sys-tertiary),
-  container-shape: null
+
+  /**
+   * Context-free aliases for Material overrides.
+   * Default should normally be `null` so as when used in context of a component the Material values are used as a fallback.
+   */
+  container-shape: null,
+  label-text-transform: null
 );
 
 @mixin vars($overrides: ()) {
-  $vars: map.merge($vars, $overrides);
+  $vars: map.merge($default-vars, $overrides);
   & {
     @each $var, $val in $vars {
       @if meta.type-of($val) != 'null' {

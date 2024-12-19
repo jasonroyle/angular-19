@@ -17,9 +17,10 @@
     brand-primary: #284e80,
     brand-secondary: #2875C3,
     brand-tertiary: #161618,
+    label-text-transform: uppercase
   ));
 
-  @include ds.theme-overrides();
+  @include ds.theme-overrides((), true);
 
   // Use high contrast light theme colors when users prefer contrast
   @media (prefers-contrast: more) {

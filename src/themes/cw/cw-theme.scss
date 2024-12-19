@@ -20,7 +20,7 @@
   ));
 
   @include ds.theme-overrides((
-    filled-container-shape: 4px
+    filled-container-shape: 10px
   ));
 
   // Use high contrast light theme colors when users prefer contrast
@@ -36,10 +36,6 @@
         tertiary: cw-colors.$tertiary-palette,
         theme-type: dark,
       ),
-    ));
-
-    @include ds.theme-overrides((
-      filled-container-shape: 4px
     ));
 
     // Use high contrast dark theme colors when users prefers a dark color scheme and contrast
