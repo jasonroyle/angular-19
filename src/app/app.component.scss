@@ -19,11 +19,18 @@
 
 section {
   display: flex;
-  gap: 1em;
+  margin: 0 0 2em;
+
+  &.gap, & > div.gap {
+    gap: 1em;
+  }
 
   > div {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+
+    > h3 {
+      text-align: center;
+    }
   }
 }
