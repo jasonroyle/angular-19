@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: THEME,
-      useValue: Theme.Volvo
+      useValue: Theme.Codeweavers
     }
   ]
 };
